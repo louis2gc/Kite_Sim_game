@@ -332,9 +332,16 @@ increment by time yields
 
 $$
 \boxed{\dot q=\frac12q\otimes(0,\boldsymbol\omega)
-=\frac12Q(q)\boldsymbol\omega,}
-\qquad
-Q(q)=\begin{bmatrix}-\mathbf q_v^T\\q_0I+[\mathbf q_v]_\times\end{bmatrix}.
+=\frac12Q(q)\boldsymbol\omega.}
+$$
+
+Here the 4×3 matrix is
+
+$$
+Q(q)=\begin{bmatrix}
+-\mathbf q_v^T\\
+q_0I+[\mathbf q_v]_\times
+\end{bmatrix}.
 $$
 
 Equivalently,
@@ -379,7 +386,8 @@ this game keeps their load geometry rigid and uses two ideal ground lines.
 
 ### Geometry and inertia estimate
 
-Before shifting to COM, define $w_r=\text{width}\times\text{relative_width}$ and
+Before shifting to COM, define $w_r=W\kappa_w$, where $W$ is `width` and
+$\kappa_w$ is `relative_width`. Then
 
 $$
 A=(n w_r,0,0),\quad B=(0,0,-h),\quad
@@ -445,10 +453,11 @@ The source KCU depower offset is not used: here d=0 means fully powered.
 A quasi-steady differential side-incidence surrogate is
 
 $$
-\alpha_s=-\text{steering\_twist}\,
+\alpha_s=-\alpha_{s,\max}\,
 \frac{\delta_m/\delta_{m,\max}}{1+k_{ds}d}.
 $$
 
+Here $\alpha_{s,\max}$ is `steering_twist_deg` converted to radians.
 The default maximum is **16.83°**, from the reference settings. The minus sign
 maps this game's positive-left motor travel to the source's side-incidence
 convention. The opposite sign would make aerodynamic steering fight the line
